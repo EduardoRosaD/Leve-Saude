@@ -4,3 +4,5 @@
 /.env
 /aws
 /.build
+/awscliv2.zip
+.gitignore
