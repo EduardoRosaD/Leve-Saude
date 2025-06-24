@@ -1,0 +1,36 @@
+service: leve-saude-api
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: dev
+  region: us-east-1
+
+functions:
+  buscarAgendas:
+    handler: src/handlers/medico.buscarAgendas
+    events:
+      - http:
+          path: medicos/{medicoId}/agendas
+          method: get
+          cors: true
+
+  marcarAgendamento:
+    handler: src/handlers/agendamento.marcarAgendamento
+    events:
+      - http:
+          path: agendamentos
+          method: post
+          cors: true
+
+  listarAgendasMock:
+    handler: src/mocks/agendas.listarAgendasMock
+    events:
+      - http:
+          path: mock/agendas
+          method: get
+          cors: true
